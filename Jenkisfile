@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages{
+	stage('Build Docker Image'){
+		steps{
+			sh "docker build . -t kishore121/nginxapp:${BUILD_NUMBER}"
+		     }
+		}
+	stage('Image push'){
+		steps{
+			withCredentials([string(ccredentialsId: 'Dockerhubpwd', variable: 'Dockerhubpwd')]){
+			sh "docker push -u kishore121 -p ${Dockerhubpwd} kishore121/nginxapp:${BUILD_NUMBER}"
+			}
+		     }
+		}
+	stage('Deploy DOcker Image'){
+		steps{
+			sh "ssh ec2-user@54.218.75.244 'docker run -d -p 80:80 --name nginxapp kishore121/nginxapp:${BUILD_NUMBER}'"
+		     }
+		}
+	}
+}
