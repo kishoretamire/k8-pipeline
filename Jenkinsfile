@@ -9,7 +9,8 @@ pipeline {
 	stage('Image push'){
 		steps{
 			withCredentials([string(credentialsId: 'Dockerhubpwd', variable: 'Dockerhubpwd')]){
-			sh "docker push -u kishore121 -p ${Dockerhubpwd} kishore121/nginxapp:${BUILD_NUMBER}"
+			sh "docker login -u kishore121 -p ${Dockerhubpwd}"
+			sh "docker push kishore121/nginxapp:${BUILD_NUMBER}"
 			}
 		     }
 		}
