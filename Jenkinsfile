@@ -16,7 +16,7 @@ pipeline {
 		}
 	stage('Deploy Docker Image'){
 		steps{
-			sh "ssh ec2-user@52.41.20.24 'docker run -d -p 80:80 --name nginxapp${BUILD_NUMBER} kishore121/nginxapp:${BUILD_NUMBER}'"
+			sh "ssh ec2-user@52.41.20.24 'docker run -d -p 8082:80 --name nginxapp${BUILD_NUMBER} kishore121/nginxapp:${BUILD_NUMBER}'"
 		     }
 		}
 	}
