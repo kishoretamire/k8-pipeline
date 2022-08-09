@@ -8,13 +8,13 @@ pipeline {
 		}
 	stage('Test'){
 		steps{
-			sh "echo "Testing" && sleep 20"
+			sh "echo Testing && sleep 20"
 			
 		     }
 		}
 	stage('Deploy'){
 		steps{
-			sh "echo "Deploying" && sleep 20"
+			sh "echo Deploying && sleep 20"
 		     }
 		}
 	}
