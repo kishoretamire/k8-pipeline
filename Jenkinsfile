@@ -8,7 +8,7 @@ pipeline {
 		}
 	stage('Test'){
 		steps{
-			sh "echo Testing && sleep 20"
+			sh "echo Testing 123 && sleep 20"
 			
 		     }
 		}
